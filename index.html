@@ -14,7 +14,7 @@
     </header>
 
     <nav id="nav-chapters">
-        <!-- Botones se generarán automáticamente -->
+        <!-- Botones generados automáticamente -->
     </nav>
 
     <main>
@@ -28,27 +28,41 @@
     </main>
 
     <script>
-        const totalChapters = 10; // cambia si agregas más capítulos
-        let currentChapter = 1;
+        let chapters = [];
+        let currentChapter = 0;
 
-        // Generar botones automáticamente
-        const nav = document.getElementById('nav-chapters');
-        for(let i = 1; i <= totalChapters; i++) {
-            const btn = document.createElement('button');
-            btn.textContent = `Capítulo ${i}`;
-            btn.onclick = () => showChapter(i);
-            nav.appendChild(btn);
+        // Cargar capítulos desde chapters.json
+        fetch('chapters.json')
+            .then(resp => resp.json())
+            .then(data => {
+                chapters = data;
+                createButtons();
+                showChapter(0); // mostrar primer capítulo
+            })
+            .catch(err => {
+                document.getElementById('chapter-text').textContent = "No se pudieron cargar los capítulos.";
+            });
+
+        function createButtons() {
+            const nav = document.getElementById('nav-chapters');
+            chapters.forEach((chap, index) => {
+                const btn = document.createElement('button');
+                btn.textContent = chap.title;
+                btn.onclick = () => showChapter(index);
+                nav.appendChild(btn);
+            });
         }
 
-        function showChapter(num) {
-            if(num < 1 || num > totalChapters) return;
-            currentChapter = num;
+        function showChapter(index) {
+            if(index < 0 || index >= chapters.length) return;
+            currentChapter = index;
 
-            document.getElementById('chapter-title').textContent = `Capítulo ${num}`;
-            document.getElementById('audio-src').src = `audio/cap${num}.mp3`;
+            const chap = chapters[index];
+            document.getElementById('chapter-title').textContent = chap.title;
+            document.getElementById('audio-src').src = chap.audio;
             document.getElementById('chapter-audio').load();
 
-            fetch(`chapters/cap${num}.txt`)
+            fetch(chap.text)
                 .then(resp => resp.text())
                 .then(text => {
                     document.getElementById('chapter-text').textContent = text;
@@ -57,9 +71,6 @@
                     document.getElementById('chapter-text').textContent = "Capítulo no disponible.";
                 });
         }
-
-        // Cargar el primer capítulo al inicio
-        showChapter(1);
     </script>
 </body>
 </html>
