@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sangre de Divinidad Empírica</title>
     <link rel="stylesheet" href="style.css">
@@ -13,106 +13,53 @@
         <h1>Sangre de Divinidad Empírica</h1>
     </header>
 
-    <nav id="capitulos-nav">
-        <button onclick="showSection('cap1')">Capítulo 1</button>
-        <button onclick="showSection('cap2')">Capítulo 2</button>
-        <button onclick="showSection('cap3')">Capítulo 3</button>
-        <button onclick="showSection('cap4')">Capítulo 4</button>
-        <button onclick="showSection('cap5')">Capítulo 5</button>
-        <button onclick="showSection('cap6')">Capítulo 6</button>
-        <button onclick="showSection('cap7')">Capítulo 7</button>
-        <button onclick="showSection('cap8')">Capítulo 8</button>
-        <button onclick="showSection('cap9')">Capítulo 9</button>
-        <button onclick="showSection('cap10')">Capítulo 10</button>
+    <nav id="nav-chapters">
+        <!-- Botones se generarán automáticamente -->
     </nav>
 
-    <!-- Secciones de capítulos -->
-    <section id="cap1" class="active">
-        <h2>Capítulo 1</h2>
-        <p>Aquí pega el texto de tu capítulo 1.</p>
-        <audio controls>
-            <source src="audio/cap1.mp3" type="audio/mpeg">
-            Tu navegador no soporta audio.
-        </audio>
-    </section>
-
-    <section id="cap2">
-        <h2>Capítulo 2</h2>
-        <p>Aquí pega el texto de tu capítulo 2.</p>
-        <audio controls>
-            <source src="audio/cap2.mp3" type="audio/mpeg">
-        </audio>
-    </section>
-
-    <section id="cap3">
-        <h2>Capítulo 3</h2>
-        <p>Aquí pega el texto de tu capítulo 3.</p>
-        <audio controls>
-            <source src="audio/cap3.mp3" type="audio/mpeg">
-        </audio>
-    </section>
-
-    <section id="cap4">
-        <h2>Capítulo 4</h2>
-        <p>Aquí pega el texto de tu capítulo 4.</p>
-        <audio controls>
-            <source src="audio/cap4.mp3" type="audio/mpeg">
-        </audio>
-    </section>
-
-    <section id="cap5">
-        <h2>Capítulo 5</h2>
-        <p>Aquí pega el texto de tu capítulo 5.</p>
-        <audio controls>
-            <source src="audio/cap5.mp3" type="audio/mpeg">
-        </audio>
-    </section>
-
-    <section id="cap6">
-        <h2>Capítulo 6</h2>
-        <p>Aquí pega el texto de tu capítulo 6.</p>
-        <audio controls>
-            <source src="audio/cap6.mp3" type="audio/mpeg">
-        </audio>
-    </section>
-
-    <section id="cap7">
-        <h2>Capítulo 7</h2>
-        <p>Aquí pega el texto de tu capítulo 7.</p>
-        <audio controls>
-            <source src="audio/cap7.mp3" type="audio/mpeg">
-        </audio>
-    </section>
-
-    <section id="cap8">
-        <h2>Capítulo 8</h2>
-        <p>Aquí pega el texto de tu capítulo 8.</p>
-        <audio controls>
-            <source src="audio/cap8.mp3" type="audio/mpeg">
-        </audio>
-    </section>
-
-    <section id="cap9">
-        <h2>Capítulo 9</h2>
-        <p>Aquí pega el texto de tu capítulo 9.</p>
-        <audio controls>
-            <source src="audio/cap9.mp3" type="audio/mpeg">
-        </audio>
-    </section>
-
-    <section id="cap10">
-        <h2>Capítulo 10</h2>
-        <p>Aquí pega el texto de tu capítulo 10.</p>
-        <audio controls>
-            <source src="audio/cap10.mp3" type="audio/mpeg">
-        </audio>
-    </section>
+    <main>
+        <section id="chapter-content">
+            <h2 id="chapter-title">Cargando...</h2>
+            <p id="chapter-text">Por favor espera.</p>
+            <audio id="chapter-audio" controls>
+                <source id="audio-src" src="" type="audio/mpeg">
+            </audio>
+        </section>
+    </main>
 
     <script>
-        function showSection(id) {
-            document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
-            document.getElementById(id).classList.add("active");
+        const totalChapters = 10; // cambia si agregas más capítulos
+        let currentChapter = 1;
+
+        // Generar botones automáticamente
+        const nav = document.getElementById('nav-chapters');
+        for(let i = 1; i <= totalChapters; i++) {
+            const btn = document.createElement('button');
+            btn.textContent = `Capítulo ${i}`;
+            btn.onclick = () => showChapter(i);
+            nav.appendChild(btn);
         }
+
+        function showChapter(num) {
+            if(num < 1 || num > totalChapters) return;
+            currentChapter = num;
+
+            document.getElementById('chapter-title').textContent = `Capítulo ${num}`;
+            document.getElementById('audio-src').src = `audio/cap${num}.mp3`;
+            document.getElementById('chapter-audio').load();
+
+            fetch(`chapters/cap${num}.txt`)
+                .then(resp => resp.text())
+                .then(text => {
+                    document.getElementById('chapter-text').textContent = text;
+                })
+                .catch(err => {
+                    document.getElementById('chapter-text').textContent = "Capítulo no disponible.";
+                });
+        }
+
+        // Cargar el primer capítulo al inicio
+        showChapter(1);
     </script>
 </body>
 </html>
