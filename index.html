@@ -4,52 +4,115 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sangre de Divinidad Empírica</title>
-
-    <!-- Enlace al CSS -->
     <link rel="stylesheet" href="style.css">
-
-    <!-- Manifest PWA -->
     <link rel="manifest" href="manifest.json">
-
     <meta name="theme-color" content="#8b0000">
-
 </head>
 <body>
     <header>
         <h1>Sangre de Divinidad Empírica</h1>
     </header>
 
-    <nav>
-        <button onclick="showSection('lectura')">📖 Leer</button>
-        <button onclick="showSection('audio')">🔊 Audio</button>
+    <nav id="capitulos-nav">
+        <button onclick="showSection('cap1')">Capítulo 1</button>
+        <button onclick="showSection('cap2')">Capítulo 2</button>
+        <button onclick="showSection('cap3')">Capítulo 3</button>
+        <button onclick="showSection('cap4')">Capítulo 4</button>
+        <button onclick="showSection('cap5')">Capítulo 5</button>
+        <button onclick="showSection('cap6')">Capítulo 6</button>
+        <button onclick="showSection('cap7')">Capítulo 7</button>
+        <button onclick="showSection('cap8')">Capítulo 8</button>
+        <button onclick="showSection('cap9')">Capítulo 9</button>
+        <button onclick="showSection('cap10')">Capítulo 10</button>
     </nav>
 
-    <!-- Sección de lectura -->
-    <section id="lectura" class="active">
+    <!-- Secciones de capítulos -->
+    <section id="cap1" class="active">
         <h2>Capítulo 1</h2>
-        <p>
-            Aquí puedes pegar el texto de tu novela.  
-            Más adelante te enseño cómo poner cada capítulo por separado.
-        </p>
-    </section>
-
-    <!-- Sección de audio -->
-    <section id="audio">
-        <h2>Audios</h2>
-        <p>Sube tus audios al repositorio y los enlazamos aquí.</p>
-
+        <p>Aquí pega el texto de tu capítulo 1.</p>
         <audio controls>
-            <source src="audio/capitulo1.mp3" type="audio/mpeg">
+            <source src="audio/cap1.mp3" type="audio/mpeg">
             Tu navegador no soporta audio.
         </audio>
     </section>
 
-    <script>
-    function showSection(id) {
-        document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
-        document.getElementById(id).classList.add("active");
-    }
-    </script>
+    <section id="cap2">
+        <h2>Capítulo 2</h2>
+        <p>Aquí pega el texto de tu capítulo 2.</p>
+        <audio controls>
+            <source src="audio/cap2.mp3" type="audio/mpeg">
+        </audio>
+    </section>
 
+    <section id="cap3">
+        <h2>Capítulo 3</h2>
+        <p>Aquí pega el texto de tu capítulo 3.</p>
+        <audio controls>
+            <source src="audio/cap3.mp3" type="audio/mpeg">
+        </audio>
+    </section>
+
+    <section id="cap4">
+        <h2>Capítulo 4</h2>
+        <p>Aquí pega el texto de tu capítulo 4.</p>
+        <audio controls>
+            <source src="audio/cap4.mp3" type="audio/mpeg">
+        </audio>
+    </section>
+
+    <section id="cap5">
+        <h2>Capítulo 5</h2>
+        <p>Aquí pega el texto de tu capítulo 5.</p>
+        <audio controls>
+            <source src="audio/cap5.mp3" type="audio/mpeg">
+        </audio>
+    </section>
+
+    <section id="cap6">
+        <h2>Capítulo 6</h2>
+        <p>Aquí pega el texto de tu capítulo 6.</p>
+        <audio controls>
+            <source src="audio/cap6.mp3" type="audio/mpeg">
+        </audio>
+    </section>
+
+    <section id="cap7">
+        <h2>Capítulo 7</h2>
+        <p>Aquí pega el texto de tu capítulo 7.</p>
+        <audio controls>
+            <source src="audio/cap7.mp3" type="audio/mpeg">
+        </audio>
+    </section>
+
+    <section id="cap8">
+        <h2>Capítulo 8</h2>
+        <p>Aquí pega el texto de tu capítulo 8.</p>
+        <audio controls>
+            <source src="audio/cap8.mp3" type="audio/mpeg">
+        </audio>
+    </section>
+
+    <section id="cap9">
+        <h2>Capítulo 9</h2>
+        <p>Aquí pega el texto de tu capítulo 9.</p>
+        <audio controls>
+            <source src="audio/cap9.mp3" type="audio/mpeg">
+        </audio>
+    </section>
+
+    <section id="cap10">
+        <h2>Capítulo 10</h2>
+        <p>Aquí pega el texto de tu capítulo 10.</p>
+        <audio controls>
+            <source src="audio/cap10.mp3" type="audio/mpeg">
+        </audio>
+    </section>
+
+    <script>
+        function showSection(id) {
+            document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
+            document.getElementById(id).classList.add("active");
+        }
+    </script>
 </body>
 </html>
