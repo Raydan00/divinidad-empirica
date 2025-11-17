@@ -4,9 +4,5 @@
   { "title": "Capítulo 3", "text": "chapters/cap3.txt", "audio": "audio/cap3.mp3" },
   { "title": "Capítulo 4", "text": "chapters/cap4.txt", "audio": "audio/cap4.mp3" },
   { "title": "Capítulo 5", "text": "chapters/cap5.txt", "audio": "audio/cap5.mp3" },
-  { "title": "Capítulo 6", "text": "chapters/cap6.txt", "audio": "audio/cap6.mp3" },
-  { "title": "Capítulo 7", "text": "chapters/cap7.txt", "audio": "audio/cap7.mp3" },
-  { "title": "Capítulo 8", "text": "chapters/cap8.txt", "audio": "audio/cap8.mp3" },
-  { "title": "Capítulo 9", "text": "chapters/cap9.txt", "audio": "audio/cap9.mp3" },
-  { "title": "Capítulo 10", "text": "chapters/cap10.txt", "audio": "audio/cap10.mp3" }
+  { "title": "Capítulo 6", "text": "chapters/cap6.txt", "audio": "audio/cap6.mp3" }
 ]
