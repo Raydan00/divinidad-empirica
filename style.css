@@ -1,46 +1,98 @@
-body {
-    font-family: Arial, sans-serif;
+/* Reset básico */
+* {
     margin: 0;
-    background: #fffaf8;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
 }
 
-header {
-    background: #8b0000;
-    color: white;
-    padding: 15px;
-    text-align: center;
-}
-
-nav {
-    display: flex;
-    justify-content: center;
-    background: #f0f0f0;
+/* Fondo y colores */
+body {
+    background-color: #f8f3f0; /* color suave para lectura */
+    color: #333;
+    line-height: 1.6;
     padding: 10px;
 }
 
-nav button {
-    margin: 5px;
-    padding: 10px 20px;
-    border: none;
-    background: #8b0000;
-    color: white;
+/* Header */
+header {
+    text-align: center;
+    padding: 20px 10px;
+    background-color: #8b0000; /* rojo oscuro */
+    color: #fff;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+header h1 {
+    font-size: 1.8em;
+}
+
+/* Navegación de capítulos */
+#nav-chapters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+#nav-chapters button {
+    background-color: #fff;
+    color: #8b0000;
+    border: 2px solid #8b0000;
     border-radius: 5px;
+    padding: 8px 12px;
     cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s ease;
 }
 
-nav button:hover {
-    background: #a30000;
+#nav-chapters button:hover {
+    background-color: #8b0000;
+    color: #fff;
 }
 
-section {
-    display: none;
-    padding: 20px;
+/* Contenido del capítulo */
+#chapter-content {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
 }
 
-section.active {
-    display: block;
+#chapter-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #8b0000;
 }
 
-audio {
+#chapter-text {
+    white-space: pre-wrap; /* mantiene saltos de línea */
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+/* Audio */
+#chapter-audio {
     width: 100%;
+    outline: none;
+}
+
+/* Responsivo */
+@media (max-width: 480px) {
+    #nav-chapters {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    #chapter-content {
+        padding: 10px;
+    }
+    
+    header h1 {
+        font-size: 1.5em;
+    }
 }
