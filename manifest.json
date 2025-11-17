@@ -1,0 +1,9 @@
+{
+  "name": "Sangre de Divinidad Empírica",
+  "short_name": "Divinidad",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#8b0000",
+  "icons": []
+}
