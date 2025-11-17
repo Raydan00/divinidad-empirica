@@ -13,9 +13,7 @@
     <h1>Sangre de Divinidad Empírica</h1>
 </header>
 
-<nav id="nav-chapters">
-    <!-- Botones generados automáticamente -->
-</nav>
+<nav id="nav-chapters"></nav>
 
 <main>
     <section id="chapter-content">
@@ -28,6 +26,15 @@
 </main>
 
 <script>
+// Registrar service worker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(reg => console.log('Service Worker registrado', reg))
+      .catch(err => console.log('Service Worker fallo', err));
+  });
+}
+
 let chapters = [];
 let currentChapter = 0;
 
