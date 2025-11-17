@@ -1,9 +1,20 @@
 {
   "name": "Sangre de Divinidad Empírica",
-  "short_name": "Divinidad",
-  "start_url": "./index.html",
+  "short_name": "SangreDivEmp",
+  "start_url": ".",
   "display": "standalone",
-  "background_color": "#ffffff",
+  "background_color": "#f8f3f0",
   "theme_color": "#8b0000",
-  "icons": []
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
 }
