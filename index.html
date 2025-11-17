@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sangre de Divinidad Empírica</title>
+
+    <!-- Enlace al CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Manifest PWA -->
+    <link rel="manifest" href="manifest.json">
+
+    <meta name="theme-color" content="#8b0000">
+
+</head>
+<body>
+    <header>
+        <h1>Sangre de Divinidad Empírica</h1>
+    </header>
+
+    <nav>
+        <button onclick="showSection('lectura')">📖 Leer</button>
+        <button onclick="showSection('audio')">🔊 Audio</button>
+    </nav>
+
+    <!-- Sección de lectura -->
+    <section id="lectura" class="active">
+        <h2>Capítulo 1</h2>
+        <p>
+            Aquí puedes pegar el texto de tu novela.  
+            Más adelante te enseño cómo poner cada capítulo por separado.
+        </p>
+    </section>
+
+    <!-- Sección de audio -->
+    <section id="audio">
+        <h2>Audios</h2>
+        <p>Sube tus audios al repositorio y los enlazamos aquí.</p>
+
+        <audio controls>
+            <source src="audio/capitulo1.mp3" type="audio/mpeg">
+            Tu navegador no soporta audio.
+        </audio>
+    </section>
+
+    <script>
+    function showSection(id) {
+        document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
+        document.getElementById(id).classList.add("active");
+    }
+    </script>
+
+</body>
+</html>
