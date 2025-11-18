@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sangre de Divinidad Empírica</title>
 <link rel="stylesheet" href="style.css">
-<link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#8b0000">
 </head>
 <body>
@@ -18,23 +17,15 @@
 <main>
     <section id="chapter-content">
         <h2 id="chapter-title">Cargando...</h2>
+        <p id="chapter-text">Por favor espera.</p>
         <audio id="chapter-audio" controls>
             <source id="audio-src" src="" type="audio/mpeg">
+            Tu navegador no soporta audio.
         </audio>
-         <p id="chapter-text">Por favor espera.</p>
     </section>
 </main>
 
 <script>
-// Registrar service worker
-// if ('serviceWorker' in navigator) {
-//  window.addEventListener('load', () => {
-//    navigator.serviceWorker.register('service-worker.js')
-//      .then(reg => console.log('Service Worker registrado', reg))
-//      .catch(err => console.log('Service Worker fallo', err));
-//  });
-// }
-
 let chapters = [];
 let currentChapter = 0;
 
@@ -48,8 +39,10 @@ fetch('chapters.json')
     })
     .catch(err => {
         document.getElementById('chapter-text').textContent = "No se pudieron cargar los capítulos.";
+        console.error(err);
     });
 
+// Crear botones de navegación
 function createButtons() {
     const nav = document.getElementById('nav-chapters');
     chapters.forEach((chap, index) => {
@@ -60,15 +53,15 @@ function createButtons() {
     });
 }
 
+// Mostrar capítulo seleccionado
 function showChapter(index) {
     if(index < 0 || index >= chapters.length) return;
     currentChapter = index;
 
     const chap = chapters[index];
     document.getElementById('chapter-title').textContent = chap.title;
-    document.getElementById('audio-src').src = chap.audio;
-    document.getElementById('chapter-audio').load();
 
+    // Cargar texto
     fetch(chap.text)
         .then(resp => resp.text())
         .then(text => {
@@ -76,7 +69,18 @@ function showChapter(index) {
         })
         .catch(err => {
             document.getElementById('chapter-text').textContent = "Capítulo no disponible.";
+            console.error(err);
         });
+
+    // Cargar audio
+    const audioSrc = document.getElementById('audio-src');
+    const audioElem = document.getElementById('chapter-audio');
+    audioSrc.src = chap.audio;
+    audioElem.load();
+    audioElem.play().catch(err => {
+        // Evita errores si el navegador bloquea reproducción automática
+        console.log("Audio listo, espera interacción del usuario para reproducir.");
+    });
 }
 </script>
 </body>
