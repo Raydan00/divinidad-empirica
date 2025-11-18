@@ -6,7 +6,6 @@
 <title>Sangre de Divinidad Empírica</title>
 <link rel="stylesheet" href="style.css">
 <meta name="theme-color" content="#8b0000">
-<link rel="icon" href="divinidad-empirica/icon-192.png" type="image/png">
 </head>
 <body>
 <header>
@@ -18,10 +17,12 @@
 <main>
     <section id="chapter-content">
         <h2 id="chapter-title">Cargando...</h2>
+
         <audio id="chapter-audio" controls>
             <source id="audio-src" src="" type="audio/mpeg">
             Tu navegador no soporta audio.
         </audio>
+
         <p id="chapter-text">Por favor espera.</p>
     </section>
 </main>
@@ -30,7 +31,7 @@
 let chapters = [];
 let currentChapter = 0;
 
-// Cargar capítulos desde chapters.json
+// Cargar lista de capítulos
 fetch('chapters.json')
     .then(resp => resp.json())
     .then(data => {
@@ -39,10 +40,11 @@ fetch('chapters.json')
         showChapter(0);
     })
     .catch(err => {
+        console.error("ERROR cargando chapters.json:", err);
         document.getElementById('chapter-text').textContent = "No se pudieron cargar los capítulos.";
-        console.error(err);
     });
 
+// Crear botones
 function createButtons() {
     const nav = document.getElementById('nav-chapters');
     chapters.forEach((chap, index) => {
@@ -53,26 +55,31 @@ function createButtons() {
     });
 }
 
+// Mostrar capítulo
 function showChapter(index) {
-    if(index < 0 || index >= chapters.length) return;
-    currentChapter = index;
+    if (index < 0 || index >= chapters.length) return;
 
+    currentChapter = index;
     const chap = chapters[index];
+
     document.getElementById('chapter-title').textContent = chap.title;
 
-    // Cargar audio
+    // AUDIO
     const audioSrc = document.getElementById('audio-src');
     audioSrc.src = chap.audio;
     const audio = document.getElementById('chapter-audio');
     audio.load();
 
-    // Cargar texto
+    console.log("Intentando cargar audio:", chap.audio);
+
+    // TEXTO
     fetch(chap.text)
         .then(resp => resp.text())
         .then(text => {
             document.getElementById('chapter-text').textContent = text;
         })
         .catch(err => {
+            console.error("ERROR cargando capítulo:", err);
             document.getElementById('chapter-text').textContent = "Capítulo no disponible.";
         });
 }
