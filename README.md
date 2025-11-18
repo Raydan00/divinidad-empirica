@@ -1,2 +1,2 @@
 # divinidad-empirica
-App para leer y la Novela "Sangre de Divinidad Empirica"
+App para leer la Novela "Sangre de Divinidad Empirica"
